@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="script.js"></script>
+
   <style>
     /* TEMEL RESET VE KOYU TEMA ARKA PLANI */
     * {
@@ -53,16 +57,20 @@
       animation: smoothEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    /* HEADER & NAVİGASYON */
+    /* HEADER & NAVİGASYON (Çizgi kaldırıldı) */
     .site-header {
       padding: 20px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
     .brand {
@@ -107,7 +115,7 @@
       gap: 6px;
     }
 
-    .nav-links a:hover, .nav-links a.nav-contact {
+    .nav-links a:hover, .nav-links a.nav-contact, .nav-links a.active {
       color: #fff;
     }
 
@@ -274,31 +282,6 @@
       gap: 16px;
     }
 
-    .footer-social {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-social a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      color: #e2e8f0;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      transition: color .2s ease, background .2s ease, transform .2s ease;
-    }
-
-    .footer-social a:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.13);
-      transform: translateY(-2px);
-    }
-
     .footer-copyright {
       color: #94a3b8;
       font-size: 0.88rem;
@@ -323,12 +306,11 @@
     }
 
     .contact-card .contact-icon.github > svg,
-    .contact-card .contact-icon.linkedin > svg,
-    .footer-social a > svg {
+    .contact-card .contact-icon.linkedin > svg {
       fill: currentColor;
       stroke: none;
     }
-
+   
     @media (max-width: 850px) {
       .footer-inner-single-line {
         flex-direction: column;
@@ -358,26 +340,28 @@
 </head>
 
 <body>
+  <div class="site-noise" aria-hidden="true"></div>
 
-  <!-- NAVİGASYON -->
+  <!-- NAVBAR -->
   <header class="site-header">
-    <nav class="nav container" aria-label="Ana menü">
+    <nav class="nav" aria-label="Ana menü">
       <a class="brand" href="index.html">
         <span class="brand-mark">S</span>
         <span>SÜHA<span class="brand-dot">.</span></span>
       </a>
 
+      <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+
       <div class="nav-links">
         <a href="index.html">Ana Sayfa</a>
         <a href="akademik.html">Akademik</a>
         <a href="yeteneklerim.html">Yetenekler</a>
-        <a href="yarismalar.html">Projeler</a>
-        <a href="gezilerim.html">Gezilerim</a>
-        <a class="nav-contact" href="iletisim.html">
-          İletişim
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17 17 7M7 7h10v10"/>
-          </svg>
+        <a href="projelerim.html">Projeler</a>
+        <a href="yarismalar.html">Yarışmalar</a>
+        <a class="nav-contact active" href="iletisim.html">
+          İletişim <i data-lucide="arrow-up-right"></i>
         </a>
       </div>
     </nav>
@@ -427,9 +411,7 @@
             <h2>Instagram</h2>
             <p>@suha_akyel hesabımdan bana ulaş.</p>
           </div>
-          <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17 17 7M7 7h10v10"/>
-          </svg>
+          <i data-lucide="arrow-up-right" class="contact-arrow"></i>
         </a>
 
         <!-- GITHUB -->
@@ -444,9 +426,7 @@
             <h2>GitHub</h2>
             <p>Projelerim ve yazılım çalışmalarım.</p>
           </div>
-          <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17 17 7M7 7h10v10"/>
-          </svg>
+          <i data-lucide="arrow-up-right" class="contact-arrow"></i>
         </a>
 
         <!-- LINKEDIN -->
@@ -461,9 +441,7 @@
             <h2>LinkedIn</h2>
             <p>İş ve staj fırsatları, profesyonel iletişim.</p>
           </div>
-          <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17 17 7M7 7h10v10"/>
-          </svg>
+          <i data-lucide="arrow-up-right" class="contact-arrow"></i>
         </a>
 
         <!-- E-POSTA -->
@@ -479,41 +457,42 @@
             <h2>Mail Gönder</h2>
             <p>suhaakyel03@gmail.com</p>
           </div>
-          <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17 17 7M7 7h10v10"/>
-          </svg>
+          <i data-lucide="arrow-up-right" class="contact-arrow"></i>
         </a>
 
       </div>
     </div>
   </main>
 
- <!-- TEK SATIR FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-inner-single-line">
-      
-      <!-- SOL: LOGO + METİN -->
-      <div class="footer-left">
-        <a class="brand" href="index.html">
-          <span class="brand-mark">S</span>
-          <span>SÜHA<span class="brand-dot">.</span></span>
-        </a>
-        <p>Merakla öğren, emekle geliştir.</p>
-      </div>
+  <!-- TEK SATIR FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner-single-line">
+        
+        <!-- SOL: LOGO + METİN -->
+        <div class="footer-left">
+          <a class="brand" href="index.html">
+            <span class="brand-mark">S</span>
+            <span>SÜHA<span class="brand-dot">.</span></span>
+          </a>
+          <p>Merakla öğren, emekle geliştir.</p>
+        </div>
 
-      <!-- SAĞ: TELİF YAZISI -->
-      <div class="footer-right">
-        <span class="footer-copyright">© <span id="current-year"></span> Süha Akyel</span>
-      </div>
+        <!-- SAĞ: TELİF YAZISI -->
+        <div class="footer-right">
+          <span class="footer-copyright">© <span id="current-year"></span> Süha Akyel</span>
+        </div>
 
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-  <!-- YIL GÜNCELLEME SCRİPTİ -->
+  <!-- İKONLARI VE YIL BİLGİSİNİ YÜKLEYEN SCRİPT -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
       const year = document.getElementById("current-year");
       if (year) {
         year.textContent = new Date().getFullYear();
