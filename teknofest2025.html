@@ -1,0 +1,808 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a12">
+  <meta name="description" content="Süha Akyel'in Minikod Akademi ekibiyle geliştirdiği Engelsiz Rota projesinin TEKNOFEST 2025 İstanbul Engelsiz Yaşam Lise Kategorisi yolculuğu.">
+
+  <title>TEKNOFEST 2025 | Engelsiz Rota — Süha Akyel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="script.js"></script>
+
+  <style>
+    /* ==========================================================
+       TEKNOFEST 2025 — SAYFAYA ÖZEL STİLLER
+       ========================================================== */
+     
+    /* HERO ALANI */
+    .festival-hero {
+      position: relative;
+      padding: 40px 0 60px;
+      overflow: hidden;
+    }
+
+    .festival-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .festival-hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      top: -100px;
+      right: -120px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.12);
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .festival-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+    }
+
+    .festival-hero-figure {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 30px;
+      border: 1px solid rgba(94, 234, 212, 0.25);
+      border-radius: 28px;
+      background: radial-gradient(circle at 50% 30%, rgba(45, 212, 191, 0.15), rgba(16, 28, 43, 0.6));
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      text-align: center;
+      z-index: 1;
+    }
+
+    .figure-icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: 90px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(94, 234, 212, 0.2), rgba(59, 130, 246, 0.2));
+      border: 1px solid rgba(94, 234, 212, 0.4);
+      box-shadow: 0 0 30px rgba(94, 234, 212, 0.25);
+    }
+
+    .figure-icon-wrapper i {
+      width: 46px;
+      height: 46px;
+      color: #5eead4;
+    }
+
+    .figure-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 6px;
+    }
+
+    .figure-subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    .figure-tag {
+      margin-top: 18px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(94, 234, 212, 0.1);
+      border: 1px solid rgba(94, 234, 212, 0.3);
+      color: #5eead4;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .festival-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      margin: 22px 0;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.035);
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .festival-badge i {
+      width: 16px;
+      height: 16px;
+      color: #5eead4;
+    }
+
+    .festival-hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin: 0 0 24px;
+    }
+
+    .festival-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .festival-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 45px;
+    }
+
+    .festival-meta-card {
+      padding: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.17);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .festival-meta-card i {
+      width: 22px;
+      height: 22px;
+      color: #5eead4;
+      margin-bottom: 12px;
+    }
+
+    .festival-meta-card span {
+      display: block;
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .festival-meta-card strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 15px;
+      color: #f1f5f9;
+    }
+
+    /* ----------------------------------------------------------
+       1. YAZI & SÜREÇ BÖLÜMÜ (SEMBOL İLE YAN YANA)
+       ---------------------------------------------------------- */
+    .festival-timeline {
+      padding: 60px 0;
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .festival-timeline-heading {
+      margin-bottom: 50px;
+    }
+
+    .festival-timeline-heading h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      margin: 10px 0;
+    }
+
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .process-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 25px;
+      align-items: stretch;
+      padding: 30px;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .process-item:hover {
+      border-color: rgba(94, 234, 212, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Sol İkon Alanı */
+    .process-icon-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(94, 234, 212, 0.06);
+      border: 1px solid rgba(94, 234, 212, 0.2);
+      border-radius: 16px;
+      padding: 15px;
+    }
+
+    .process-icon-box i {
+      width: 36px;
+      height: 36px;
+      color: #5eead4;
+      margin-bottom: 8px;
+    }
+
+    .process-step-num {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+
+    /* Sağ İçerik Alanı */
+    .process-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .process-overline {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #5eead4;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .process-content h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(18px, 2vw, 22px);
+      color: #f8fafc;
+      margin-bottom: 12px;
+    }
+
+    .process-content p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .process-content p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .festival-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .festival-tags span {
+      padding: 5px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.17);
+      border-radius: 999px;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 11px;
+    }
+
+    /* ----------------------------------------------------------
+       2. FOTOĞRAF GALERİSİ ("TEKNOFEST 2025'ten Anılarım")
+       ---------------------------------------------------------- */
+    .festival-gallery-section {
+      padding: 60px 0 90px;
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .gallery-heading {
+      margin-bottom: 35px;
+      text-align: left;
+    }
+
+    .gallery-heading h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      margin-top: 8px;
+    }
+
+    /* Fotoğrafların Yan Yana Dizildiği Izgara */
+    .memory-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .memory-card {
+      position: relative;
+      height: 260px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: #080a12;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    /* DİKEY-YATAY TÜM FOTOĞRAFLAR KARTA BOŞLUKSUT SIĞAR */
+    .memory-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover !important;
+      object-position: center;
+      padding: 0 !important;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .memory-card:hover {
+      border-color: rgba(94, 234, 212, 0.5);
+      box-shadow: 0 12px 35px rgba(94, 234, 212, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .memory-card:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ----------------------------------------------------------
+       TAM EKRAN LIGHTBOX (FOTOĞRAFA TIKLAYINCA AÇILAN MODAL)
+       ---------------------------------------------------------- */
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(4, 6, 12, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .image-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Tam Açılan Fotoğraf: Ekranı Kaplar, Kesilmez */
+    .image-modal img {
+      max-width: 95vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 1px solid rgba(94, 234, 212, 0.4);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(94, 234, 212, 0.2);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 100000;
+    }
+
+    .modal-close:hover {
+      background: rgba(94, 234, 212, 0.3);
+      color: #5eead4;
+      transform: scale(1.05);
+    }
+
+    /* MOBİL UYUM */
+    @media (max-width: 768px) {
+      .festival-hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .festival-hero-figure {
+        max-width: 340px;
+        margin: 20px auto 0;
+      }
+
+      .festival-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .process-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .process-icon-box {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 10px 15px;
+      }
+
+      .process-icon-box i {
+        margin-bottom: 0;
+        width: 24px;
+        height: 24px;
+      }
+
+      .memory-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .memory-card {
+        height: 220px;
+      }
+
+      .modal-close {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-noise" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="nav container" aria-label="Ana menü">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">S</span>
+        <span>SÜHA<span class="brand-dot">.</span></span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <div class="nav-links">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="akademik.html">Akademik</a>
+        <a href="yeteneklerim.html">Yetenekler</a>
+        <a href="projelerim.html">Projeler</a>
+        <a class="active" href="yarismalar.html">Yarışmalar</a>
+        <a class="nav-contact" href="iletisim.html">
+          İletişim <i data-lucide="arrow-up-right"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="subpage container">
+
+    <!-- HERO SECTION -->
+    <section class="festival-hero reveal">
+      <div class="festival-hero-grid">
+        
+        <div class="festival-hero-content">
+          <p class="section-kicker">SÜHA AKYEL / TEKNOFEST 2025</p>
+
+          <div class="festival-badge">
+            <i data-lucide="trophy"></i>
+            ENGELSİZ YAŞAM · LİSE KATEGORİSİ
+          </div>
+
+          <h1>
+            Bir fikirle başladık,<br>
+            <span class="gradient-text">finale uzandık.</span>
+          </h1>
+
+          <p class="page-lead">
+            Afyonkarahisar'da başlayan bir ekip çalışması, erişilebilir bir dünya hayali ve aylar süren yazılım geliştirme süreci... Minikod Akademi ekibimle birlikte Engelsiz Rota'yı geliştirdiğimiz ve TEKNOFEST 2025 İstanbul finaline uzanan yolculuğumuz.
+          </p>
+
+          <div class="festival-actions">
+            <a href="#surec" class="button button-primary">
+              Süreci Keşfet
+              <i data-lucide="arrow-down"></i>
+            </a>
+
+            <a href="#galeri" class="button button-secondary">
+              <i data-lucide="image"></i>
+              Fotoğraf Galerisi
+            </a>
+          </div>
+        </div>
+
+        <div class="festival-hero-figure">
+          <div class="figure-icon-wrapper">
+            <i data-lucide="award"></i>
+          </div>
+          <div class="figure-title">ENGELSİZ ROTA</div>
+          <div class="figure-subtitle">TEKNOFEST 2025 Finalisti</div>
+          <div class="figure-tag">85 PUAN · İSTANBUL</div>
+        </div>
+
+      </div>
+
+      <!-- META KARTLARI -->
+      <div class="festival-meta">
+        <div class="festival-meta-card">
+          <i data-lucide="calendar-days"></i>
+          <span>Yarışma dönemi</span>
+          <strong>Haziran – Eylül 2025</strong>
+        </div>
+
+        <div class="festival-meta-card">
+          <i data-lucide="map-pin"></i>
+          <span>Final alanı</span>
+          <strong>İstanbul</strong>
+        </div>
+
+        <div class="festival-meta-card">
+          <i data-lucide="award"></i>
+          <span>Final sonucu</span>
+          <strong>85 puan · 8. sıra</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. BÖLÜM: YAZILI SÜREÇ -->
+    <section class="festival-timeline reveal" id="surec">
+      <div class="festival-timeline-heading">
+        <p class="section-kicker">BİR YOLCULUĞUN HİKÂYESİ</p>
+        <h2>Fikirden <span class="gradient-text">Final Sahnesine.</span></h2>
+      </div>
+
+      <div class="process-list">
+        
+        <!-- ADIM 1 -->
+        <article class="process-item">
+          <div class="process-icon-box">
+            <i data-lucide="lightbulb"></i>
+            <span class="process-step-num">01 / 06</span>
+          </div>
+          <div class="process-content">
+            <span class="process-overline">HAZİRAN 2025 · FİKRİN DOĞUŞU</span>
+            <h3>Bir sorunu fark etmek, çözüm için ilk adımı atmaktır.</h3>
+            <p>
+              Haziran 2025'te Minikod Akademi Robotik Kodlama ve Yazılım Eğitim Merkezi'ndeki ekibimle birlikte TEKNOFEST 2025 İstanbul Engelsiz Yaşam Lise Kategorisi'ne başvurduk. Engelsiz Rota fikri, günlük yaşamda karşılaşılabilen erişilebilirlik sorunlarına yazılım aracılığıyla çözüm üretme düşüncesinden doğdu. Amacımız, özellikle hareket kısıtlılığı bulunan bireylerin bir noktadan diğerine ulaşırken güzergâhlarını daha bilinçli seçebilmelerine yardımcı olabilecek bir dijital çözüm geliştirmekti.
+            </p>
+            <p>
+              Projenin ilk aşamasında hedef kullanıcılarımızı, karşılaşabilecekleri güçlükleri ve mevcut harita deneyimlerinin erişilebilirlik açısından hangi noktalarda geliştirilebileceğini değerlendirdik. Bir güzergâhın yalnızca iki nokta arasındaki mesafeden ibaret olmadığını; kaldırımların durumu, rampalar, geçiş noktaları ve çevresel engeller gibi unsurların da yolculuk deneyimini etkileyebileceğini göz önünde bulundurduk. Böylece temel hedefimizi belirledik: erişilebilirlik ihtiyacını merkeze alan, kullanıcıların rota seçimini desteklemeyi amaçlayan bir mobil uygulama ortaya koymak.
+            </p>
+            <div class="festival-tags">
+              <span>Takım çalışması</span>
+              <span>Problem analizi</span>
+              <span>Proje fikri</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ADIM 2 -->
+        <article class="process-item">
+          <div class="process-icon-box">
+            <i data-lucide="file-text"></i>
+            <span class="process-step-num">02 / 06</span>
+          </div>
+          <div class="process-content">
+            <span class="process-overline">PLANLAMA · ÖN TASARIM RAPORU</span>
+            <h3>Fikri bir projeye dönüştürmek.</h3>
+            <p>
+              Proje fikrimizi belirledikten sonra sıra, bu fikri teknik ve akademik açıdan açıklanabilir bir tasarıma dönüştürmeye geldi. Ön tasarım raporunda Engelsiz Rota'nın hangi probleme odaklandığını, kimlere hitap ettiğini, hedeflediğimiz çözümün temel yaklaşımını ve uygulamanın nasıl geliştirilebileceğini ayrıntılı biçimde ele aldık. Projenin kapsamını belirlerken kullanıcıların ihtiyaçlarını, erişilebilir güzergâh kavramını ve harita teknolojilerinin bu süreçte nasıl kullanılabileceğini değerlendirdik.
+            </p>
+            <p>
+              Bu aşama, yalnızca bir rapor hazırlamaktan ibaret değildi. Projenin amacını açıkça ifade etmek, çözüm önerimizi gerekçelendirmek ve geliştirme sürecinin temelini oluşturacak teknik yaklaşımı ortaya koymak gerekiyordu. Takım olarak fikirlerimizi ortak bir çerçevede birleştirdik; projenin uygulanabilirliğini ve hedeflerimizle uyumunu gözden geçirdik. Hazırladığımız ön tasarım raporunun değerlendirme aşamasını geçmesi, Engelsiz Rota'yı geliştirmeye devam edebilmemiz açısından önemli bir eşikti.
+            </p>
+            <div class="festival-tags">
+              <span>Ön tasarım raporu</span>
+              <span>Teknik planlama</span>
+              <span>İlk değerlendirme</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ADIM 3 -->
+        <article class="process-item">
+          <div class="process-icon-box">
+            <i data-lucide="code-2"></i>
+            <span class="process-step-num">03 / 06</span>
+          </div>
+          <div class="process-content">
+            <span class="process-overline">GELİŞTİRME · KODLAMA SÜRECİ</span>
+            <h3>Satırlardan çalışan bir uygulamaya.</h3>
+            <p>
+              Ön tasarım raporunun ardından fikrimizi çalışan bir mobil uygulamaya dönüştürmek için geliştirme sürecine başladık. Engelsiz Rota'yı Flutter kullanarak geliştirirken mobil arayüzün oluşturulması, harita deneyiminin uygulamaya entegre edilmesi ve projenin farklı bileşenlerinin birbiriyle uyumlu çalışması üzerinde durduk. Harita altyapısı için MapTiler'dan, uygulamanın ihtiyaç duyduğu arka uç hizmetleri için ise Firebase teknolojilerinden yararlandık. Bu teknolojileri bir araya getirirken amacımız, erişilebilir rota fikrini kullanıcıların etkileşim kurabileceği bir mobil deneyime dönüştürmekti.
+            </p>
+            <p>
+              Engelsiz Rota'nın çıkış noktası, geleneksel bir harita uygulamasında olduğu gibi yalnızca başlangıç ve varış noktalarını göstermekten daha fazlasını hedeflemekti. Bir güzergâhın kullanıcı açısından ne kadar uygun olabileceğini değerlendirirken rampalar, kaldırımlar ve geçiş noktaları gibi erişilebilirlikle ilişkili unsurları dikkate alan bir yaklaşım benimsedik. Bu hedef doğrultusunda harita verilerinin kullanımı, uygulamanın işleyişi ve kullanıcı deneyimi üzerinde çalıştık. Geliştirme süreci, yazılımın yalnızca kod yazmaktan oluşmadığını; farklı teknolojileri doğru biçimde birleştirmeyi, karşılaşılan sorunları çözmeyi ve belirlenen amaca uygun bir ürün ortaya koymayı da gerektirdiğini gösterdi.
+            </p>
+            <div class="festival-tags">
+              <span>Flutter</span>
+              <span>MapTiler</span>
+              <span>Firebase</span>
+              <span>Mobil uygulama</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ADIM 4 -->
+        <article class="process-item">
+          <div class="process-icon-box">
+            <i data-lucide="map-pin"></i>
+            <span class="process-step-num">04 / 06</span>
+          </div>
+          <div class="process-content">
+            <span class="process-overline">TEST VE İYİLEŞTİRME · SAHA</span>
+            <h3>Gerçek koşullarda denemeden, çözümün yeterli olduğunu bilemezdik.</h3>
+            <p>
+              Yazılım geliştirme sürecinde bir uygulamanın teknik olarak çalışması, gerçek yaşamda ihtiyaçları karşılayabildiğini tek başına göstermiyor. Bu nedenle Engelsiz Rota'yı geliştirdikten sonra saha gözlemlerine ve test çalışmalarına önem verdik. Afyonkarahisar'da ve İstanbul'un bazı bölgelerinde gerçekleştirdiğimiz saha testlerinde farklı çevreleri gözlemleme ve erişilebilir güzergâh yaklaşımımızı gerçek kullanım koşulları açısından değerlendirme fırsatı bulduk.
+            </p>
+            <p>
+              Saha süreci, harita üzerinde görünen bir yol ile kullanıcı açısından uygun bir güzergâh arasındaki farkı daha iyi anlamamıza yardımcı oldu. Kaldırım düzeni, rampalar, geçiş alanları ve çevresel koşullar gibi unsurların erişilebilirlik değerlendirmesinde neden önemli olduğunu yerinde gözlemledik. Bu çalışmalarla projemizin hedefini gerçek yaşamla ilişkilendirdik ve geliştirdiğimiz çözümün hangi ihtiyaçlara cevap vermeyi amaçladığını daha net değerlendirdik. Böylece Engelsiz Rota'nın yalnızca teorik bir fikir olarak kalmaması, günlük yaşamda karşılaşılan sorunlarla ilişkilendirilmesi için önemli deneyimler edindik.
+            </p>
+            <div class="festival-tags">
+              <span>Afyonkarahisar</span>
+              <span>İstanbul</span>
+              <span>Saha deneyimi</span>
+              <span>Test</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ADIM 5 -->
+        <article class="process-item">
+          <div class="process-icon-box">
+            <i data-lucide="clipboard-check"></i>
+            <span class="process-step-num">05 / 06</span>
+          </div>
+          <div class="process-content">
+            <span class="process-overline">RAPOR VE SUNUM · FİNAL DEĞERLENDİRMESİ</span>
+            <h3>Geliştirdiğimiz işi anlatma zamanı.</h3>
+            <p>
+              Geliştirme ve saha çalışmalarının ardından projemizin teknik yaklaşımını, izlediğimiz yolu ve ulaştığımız sonuçları düzenli biçimde aktarabilmek için final tasarım raporunu hazırladık. Bu aşamada Engelsiz Rota'nın çözmeyi hedeflediği problemi, uygulamanın temel yapısını, kullandığımız teknolojileri ve erişilebilirlik odağımızı bir bütün olarak anlatmaya odaklandık. Bir projeyi geliştirmek kadar, nasıl çalıştığını, hangi ihtiyaçtan doğduğunu ve hedeflediği faydayı açık biçimde ortaya koymanın da önemli olduğunu deneyimledik.
+            </p>
+            <p>
+              Raporlama sürecinin ardından çevrim içi sunum aşamasını tamamladık. Projemizin yalnızca bir mobil uygulama olmadığını; gerçek yaşamda karşılaşılan erişilebilirlik sorunlarına teknoloji aracılığıyla yaklaşma çabasını anlatmaya çalıştık. Fikir aşamasından geliştirmeye, saha gözlemlerinden raporlamaya kadar geçen sürecin değerlendirilmesi sonucunda Engelsiz Rota'nın TEKNOFEST 2025 İstanbul finalisti olduğunu öğrendik. Bu gelişme, ekip olarak ortaya koyduğumuz emeğin önemli bir karşılığı ve projemizi daha geniş bir platformda tanıtabilmek için büyük bir fırsattı.
+            </p>
+            <div class="festival-tags">
+              <span>Final tasarım raporu</span>
+              <span>Çevrim içi sunum</span>
+              <span>Finalist</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ADIM 6 -->
+        <article class="process-item">
+          <div class="process-icon-box">
+            <i data-lucide="trophy"></i>
+            <span class="process-step-num">06 / 06</span>
+          </div>
+          <div class="process-content">
+            <span class="process-overline">FİNAL HEYECANI · İSTANBUL</span>
+            <h3>Sahne İstanbul'da: Engelsiz Rota Final Alanında.</h3>
+            <p>
+              Aylar süren hazırlığın ardından İstanbul'daki TEKNOFEST 2025 final alanında projemizi jüri üyelerine ve ziyaretçilere sunma fırsatı bulduk. Bu aşama, yalnızca geliştirdiğimiz uygulamayı tanıtmak değil, aynı zamanda projemizin çıkış noktasını, erişilebilirlik hedefini, teknik altyapısını ve geliştirme sürecinde edindiğimiz deneyimleri paylaşmak açısından da önemliydi. Farklı projelerin ve teknoloji çalışmalarının bir araya geldiği bu ortamda Engelsiz Rota'yı temsil etmek, ekip çalışmasının ve uzun süren hazırlığın somut bir karşılığıydı.
+            </p>
+            <p>
+              Engelsiz Rota, Türkiye genelindeki değerlendirmeler sonucunda 85 puan alarak yarışmayı 8. sırada tamamladı. Bu sonuç, bizim için yalnızca bir sıralamadan ibaret değildi. Bir fikrin belirlenmesinden teknik planlamaya, mobil uygulama geliştirmeden saha çalışmalarına ve final sunumuna kadar uzanan sürecin tamamı önemli bir öğrenme deneyimi sundu. Ekip çalışması, problem çözme, yazılım teknolojilerini bir arada kullanma ve geliştirdiğimiz işi etkili biçimde anlatma konularında değerli tecrübeler kazandık. Engelsiz Rota yolculuğu, teknolojinin gerçek yaşam ihtiyaçlarıyla buluştuğunda anlam kazandığını ve bir fikri hayata geçirmenin sabır, iş birliği ve sürekli gelişim gerektirdiğini gösteren unutulmaz bir deneyim olarak benim için yerini aldı.
+            </p>
+            <div class="festival-tags">
+              <span>İstanbul Finali</span>
+              <span>Jüri Sunumu</span>
+              <span>85 Puan</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 2. BÖLÜM: TEKNOFEST 2025'TEN ANILARIM -->
+    <section class="festival-gallery-section reveal" id="galeri">
+      <div class="gallery-heading">
+        <p class="section-kicker">GÖRSEL HAFIZA</p>
+        <h2>TEKNOFEST 2025'ten <span class="gradient-text">Anılarım.</span></h2>
+      </div>
+
+      <!-- 6'LI FOTOĞRAF GALERİSİ -->
+      <div class="memory-gallery">
+        
+        <div class="memory-card" onclick="openLightbox('teknofest1.jpeg')">
+          <img src="teknofest1.jpeg" alt="TEKNOFEST 2025 Anı 1" loading="lazy">
+        </div>
+
+        <div class="memory-card" onclick="openLightbox('teknofest2.jpeg')">
+          <img src="teknofest2.jpeg" alt="TEKNOFEST 2025 Anı 2" loading="lazy">
+        </div>
+
+        <div class="memory-card" onclick="openLightbox('teknofest3.jpeg')">
+          <img src="teknofest3.jpeg" alt="TEKNOFEST 2025 Anı 3" loading="lazy">
+        </div>
+
+        <div class="memory-card" onclick="openLightbox('teknofest4.jpeg')">
+          <img src="teknofest4.jpeg" alt="TEKNOFEST 2025 Anı 4" loading="lazy">
+        </div>
+
+        <div class="memory-card" onclick="openLightbox('teknofest5.jpeg')">
+          <img src="teknofest5.jpeg" alt="TEKNOFEST 2025 Anı 5" loading="lazy">
+        </div>
+
+        <div class="memory-card" onclick="openLightbox('teknofest6.jpeg')">
+          <img src="teknofest6.jpeg" alt="TEKNOFEST 2025 Anı 6" loading="lazy">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GEZİNTİ VE DÖNÜŞ -->
+    <div style="padding: 20px 0 60px; text-align: center;">
+      <a href="yarismalar.html" class="button button-secondary">
+        <i data-lucide="arrow-left"></i>
+        Tüm Yarışmalara Dön
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOTOĞRAF BÜYÜTME MODALI -->
+  <div class="image-modal" id="imageModal" onclick="closeLightbox()">
+    <button class="modal-close" onclick="closeLightbox()" aria-label="Kapat">
+      <i data-lucide="x"></i>
+    </button>
+    <img id="modalImg" src="" alt="Büyütülmüş Fotoğraf" onclick="event.stopPropagation()">
+  </div>
+
+  <script>
+    // Lucide ikonlarını çalıştır
+    lucide.createIcons();
+
+    // Lightbox Modal Fonksiyonları
+    function openLightbox(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = src;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Arka planın kaymasını engeller
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Kaydırmayı tekrar açar
+    }
+
+    // Klavyeden ESC basılınca kapatma
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
+```
